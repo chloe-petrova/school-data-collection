@@ -1,0 +1,10 @@
+# Database (contains scraped data — keep local only)
+schools.db
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Virtual environment
+.venv/
