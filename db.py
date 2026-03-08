@@ -9,11 +9,13 @@ def init_db(conn):
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             issc_id     TEXT,
             name        TEXT,
-            url         TEXT NOT NULL,
+            url         TEXT NOT NULL UNIQUE,
             status      TEXT NOT NULL DEFAULT 'pending',
             fail_reason TEXT,
             queued_at   TEXT DEFAULT (datetime('now'))
         );
+
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_schools_queue_url ON schools_queue(url);
 
         CREATE TABLE IF NOT EXISTS results (
             id                      INTEGER PRIMARY KEY AUTOINCREMENT,

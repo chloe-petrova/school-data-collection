@@ -1,6 +1,6 @@
 # TICKET-003 — CSV loader script (`load_schools.py`)
 
-**Status**: todo
+**Status**: done
 
 ---
 
