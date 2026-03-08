@@ -1,6 +1,6 @@
 # TICKET-002 — Database initialisation module (`db.py`)
 
-**Status**: todo
+**Status**: done
 
 ---
 
