@@ -112,6 +112,10 @@ CREATE TABLE IF NOT EXISTS results (
     safeguarding_lead_name  TEXT,
     safeguarding_lead_email TEXT,
     best_contact_email      TEXT,
+    age_range               TEXT,
+    address                 TEXT,
+    is_sen                  TEXT,  -- 'yes' | 'no' | 'unknown'
+    gender_type             TEXT,  -- 'girls' | 'boys' | 'co-ed' | 'unknown'
     collected_at            TEXT DEFAULT (datetime('now'))
 );
 ```
@@ -231,6 +235,10 @@ def save_result(
     safeguarding_lead_name: str,
     safeguarding_lead_email: str,
     best_contact_email: str,
+    age_range: str,
+    address: str,
+    is_sen: str,
+    gender_type: str,
 ) -> str:
     ...
 ```
@@ -243,6 +251,7 @@ def save_result(
 
 **Notes**:
 - All fields except `queue_id` and `school_url` may be empty strings if not found. Do not reject them.
+- `is_sen` should be `"yes"`, `"no"`, or `"unknown"`. `gender_type` should be `"girls"`, `"boys"`, `"co-ed"`, or `"unknown"`.
 - Wrap in a transaction so both writes succeed or both fail.
 
 **Acceptance criteria**:
@@ -327,8 +336,12 @@ For each school:
    - Headteacher / Principal email
    - Designated Safeguarding Lead (DSL) name
    - DSL email
+   - Age range of pupils (e.g. 4–18, 11–16)
+   - Full address of the school
+   - Whether the school is a Special Educational Needs (SEN) school (yes / no / unknown)
+   - Whether the school is girls-only, boys-only, or co-educational (girls / boys / co-ed / unknown)
 5. If a specific email is not published, use the best general contact email (e.g. admin@, info@, office@).
-6. If you have found all four data points (or the best available), call save_result.
+6. If you have found all data points (or the best available), call save_result.
 7. If the site is unreachable or you cannot find meaningful data after visiting 5+ pages, call mark_failed with a brief reason.
 
 Work through all 10 schools before stopping. Be thorough but do not visit more than 8 pages per school.

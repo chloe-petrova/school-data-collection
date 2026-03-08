@@ -10,12 +10,16 @@ All of the data the agent collects gets stored and logged so I can look back at 
 
 ## What Information to Collect
 
-For each school, the tool should find and record the following four things:
+For each school, the tool should find and record the following eight things:
 
 1. The name of the head (headteacher or principal)
 2. The email address of the head
 3. The name of the safeguarding lead
 4. The email address of the safeguarding lead
+5. The age range of pupils the school caters for (e.g. 4–18, 11–16)
+6. The address of the school
+7. Whether the school is a special educational needs (SEN) school or a mainstream school
+8. Whether the school is girls-only, boys-only, or co-educational
 
 If a direct email address for the head or safeguarding lead is not published on the website, the agent should fall back to the best available general contact email for the school (such as a main office or admin address). The names of the head and safeguarding lead should always be captured regardless of whether an email is found.
 

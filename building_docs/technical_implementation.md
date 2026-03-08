@@ -36,7 +36,7 @@ Create a folder for the project. Inside it, create a virtual environment and ins
 When the MCP server starts for the first time, it creates two tables:
 
 - **schools_queue** — one row per school, with columns for the URL, status (pending / done / failed), and a timestamp
-- **results** — one row per successfully processed school, with columns for: school URL, head name, head email, safeguarding lead name, safeguarding lead email, best contact email (fallback), and the date collected
+- **results** — one row per successfully processed school, with columns for: school URL, head name, head email, safeguarding lead name, safeguarding lead email, best contact email (fallback), age range, address, SEN status (yes/no/unknown), gender type (girls/boys/co-ed/unknown), and the date collected
 
 ### Step 3 — Load the school list
 
@@ -48,7 +48,7 @@ Write a single Python file that defines the MCP server and its four tools:
 
 - `get_next_school` queries the database for the next row where status is pending, marks it as in-progress, and returns the URL to Claude Code
 - `fetch_page` takes a URL, launches a Playwright browser instance, navigates to the URL, waits for the page to load, and returns the visible text content (not raw HTML — plain text is easier for Claude to read)
-- `save_result` takes the school URL and the five data fields as arguments and writes them to the results table, then marks the school as done in the queue
+- `save_result` takes the school URL and the nine data fields as arguments and writes them to the results table, then marks the school as done in the queue
 - `mark_failed` updates the school's status to failed in the queue and records the reason
 
 ### Step 5 — Register the MCP server with Claude Code
@@ -64,6 +64,8 @@ Obtain the list of UK independent school URLs. The simplest approach: use a sess
 Open Claude Code and ask it to process the school queue. Give it a simple instruction like: "Process the next 20 schools from the queue. For each one, fetch the website, navigate to the relevant pages (About, Staff, Safeguarding, Contact), extract the head's name, head's email, safeguarding lead's name, and safeguarding lead's email, then save the result. If you cannot find a specific email, use the best general contact email instead. If the site is unreachable or the data cannot be found, mark it as failed."
 
 Claude Code will then loop through the schools, calling the MCP tools as needed, until the batch is done.
+
+The instruction should ask it to collect: head name, head email, safeguarding lead name, safeguarding lead email, age range, address, SEN status, and gender type.
 
 ---
 
@@ -83,7 +85,7 @@ CSV file
 
 ## Output
 
-The SQLite database will contain a `results` table that can be exported to CSV at any time for use in Excel, Google Sheets, or any other tool. Each row represents one school with all four data points (or the best available fallback).
+The SQLite database will contain a `results` table that can be exported to CSV at any time for use in Excel, Google Sheets, or any other tool. Each row represents one school with all data points (or the best available fallback where a field cannot be found).
 
 ---
 
