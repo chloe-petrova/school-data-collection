@@ -1,0 +1,9 @@
+[project]
+name = "chlobo-is-a-spammer"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=3.1.0",
+    "playwright>=1.58.0",
+]

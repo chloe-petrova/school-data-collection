@@ -18,7 +18,22 @@
       "Bash(git add building_docs/tickets/TICKET-000.md building_docs/tickets_index.md building_docs/CONTRIBUTING.md)",
       "Bash(git commit:*)",
       "Bash(git -C /c/Users/cstow/cm_code/chlobo_is_a_spammer status)",
-      "Bash(git add .claude/settings.local.json)"
+      "Bash(git add .claude/settings.local.json)",
+      "Bash(git add building_docs/CONTRIBUTING.md building_docs/prompts/ticket-001-prompt.md)",
+      "Bash(uv init --no-readme)",
+      "Bash(where uv)",
+      "Read(//c/Users/cstow/.local/**)",
+      "Read(//c/Users/cstow/AppData/Local/Microsoft/WinGet/Links//**)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe init --no-readme)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe add fastmcp playwright)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe run playwright install chromium)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe run python -c \"import fastmcp; import playwright; print\\(''OK''\\)\")",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe python list)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe python install 3.13)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe python pin 3.13)",
+      "Bash(rm -rf .venv)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe sync)",
+      "Bash(/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe run python -c \"import sys, fastmcp, playwright; print\\(sys.version\\)\")"
     ]
   }
 }

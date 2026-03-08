@@ -11,7 +11,7 @@ Individual ticket files are in `building_docs/tickets/`.
 | Ticket | Title | Status |
 |---|---|---|
 | [TICKET-000](tickets/TICKET-000.md) | Prerequisites / local environment setup | done |
-| [TICKET-001](tickets/TICKET-001.md) | Project scaffolding | todo |
+| [TICKET-001](tickets/TICKET-001.md) | Project scaffolding | done |
 | [TICKET-002](tickets/TICKET-002.md) | Database initialisation module (`db.py`) | todo |
 | [TICKET-003](tickets/TICKET-003.md) | CSV loader script (`load_schools.py`) | todo |
 | [TICKET-004](tickets/TICKET-004.md) | MCP tool: `get_next_school` | todo |

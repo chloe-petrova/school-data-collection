@@ -1,6 +1,6 @@
 # TICKET-001 — Project scaffolding
 
-**Status**: todo
+**Status**: done
 
 ---
 
