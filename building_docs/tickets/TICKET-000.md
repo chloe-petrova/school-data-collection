@@ -1,6 +1,6 @@
 # TICKET-000 — Prerequisites / local environment setup
 
-**Status**: todo
+**Status**: done
 
 ---
 

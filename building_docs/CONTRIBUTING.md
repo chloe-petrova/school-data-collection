@@ -25,7 +25,10 @@ Apply TDD where it adds value. Don't write tests for boilerplate or configuratio
 
 ## Completing a ticket
 
-When a ticket's acceptance criteria are met, stop and ask the user whether they want to commit before moving on. Do not auto-commit or assume they want to proceed.
+When a ticket's acceptance criteria are met:
+1. Update the ticket file's `**Status**` field from `todo` to `done`.
+2. Update the status column in `building_docs/tickets_index.md` to match.
+3. Stop and ask the user whether they want to commit before moving on. Do not auto-commit or assume they want to proceed.
 
 ## Accuracy
 
