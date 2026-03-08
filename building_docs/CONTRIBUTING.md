@@ -29,6 +29,19 @@ When a ticket's acceptance criteria are met:
 1. Update the ticket file's `**Status**` field from `todo` to `done`.
 2. Update the status column in `building_docs/tickets_index.md` to match.
 3. Stop and ask the user whether they want to commit before moving on. Do not auto-commit or assume they want to proceed.
+4. After the commit, create `building_docs/prompts/ticket-{next number}-prompt.md` for the next ticket (see format below).
+
+## Prompt file format
+
+`building_docs/prompts/ticket-{N}-prompt.md` is a short starter prompt for the next Claude Code session. Keep it to 10 lines or fewer:
+
+```
+Verify `building_docs/tickets/TICKET-{N-1}.md` has **Status**: done before proceeding.
+Read `building_docs/tickets/TICKET-{N}.md` in full.
+Use `TodoWrite` to track every step. Mark each item done immediately — never batch completions.
+Follow all guidelines in `building_docs/CONTRIBUTING.md`.
+When acceptance criteria are met, update the ticket status and index, then stop and ask before committing.
+```
 
 ## Accuracy
 
