@@ -1,4 +1,4 @@
-Verify `building_docs/tickets/TICKET-009.md` has **Status**: done before proceeding.
+Verify that all previous tickets are done by studying the code and not the md files.
 Read `building_docs/tickets/TICKET-010.md` in full.
 Use `TodoWrite` to track every step. Mark each item done immediately — never batch completions.
 Follow all guidelines in `building_docs/CONTRIBUTING.md`.

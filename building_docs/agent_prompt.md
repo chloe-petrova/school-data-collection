@@ -1,14 +1,3 @@
-# TICKET-010 — Write and test the agent run prompt
-
-**Status**: done
-
----
-
-**Goal**: Produce the standard instruction to paste into Claude Code to run a batch, and verify the end-to-end flow works on a small sample.
-
-**Agent prompt** (save in `building_docs/agent_prompt.md`):
-
-```
 Process the next 10 schools from the queue using the school-scraper MCP tools.
 
 For each school:
@@ -27,15 +16,22 @@ For each school:
 5. If a specific email is not published, use the best general contact email (e.g. admin@, info@, office@).
 6. If you have found all data points (or the best available), call save_result.
 7. If the site is unreachable or you cannot find meaningful data after visiting 5+ pages, call mark_failed with a brief reason.
+8. After each school (whether saved or failed), append the results to `processed.md` in the project root. Use this format:
+
+   ```
+   ## School Name
+   - **URL**: ...
+   - **Head name**: ...
+   - **Head email**: ...
+   - **Safeguarding lead name**: ...
+   - **Safeguarding lead email**: ...
+   - **Best contact email**: ...
+   - **Age range**: ...
+   - **Address**: ...
+   - **SEN**: yes / no / unknown
+   - **Gender**: girls / boys / co-ed / unknown
+   - **Status**: done / failed
+   - **Fail reason**: (if failed)
+   ```
 
 Work through all 10 schools before stopping. Be thorough but do not visit more than 8 pages per school.
-```
-
-**Test run**:
-- Run the prompt against 5 schools.
-- Check `results` table has rows with real data.
-- Check `schools_queue` shows those 5 as `done`.
-
-**Acceptance criteria**:
-- At least 3 of 5 test schools produce a result row with a non-empty `head_name`.
-- No unhandled Python exceptions in the MCP server logs.
