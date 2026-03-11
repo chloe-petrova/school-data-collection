@@ -10,7 +10,7 @@
 
 **Tasks**:
 - Import `fastmcp` and create the server: `mcp = FastMCP("school-scraper")`
-- Import `db` and call `db.init_db()` at module load time so the DB is ready before any tool is called.
+- Import `db`. The DB is initialised lazily via `db.get_conn()` on first tool call, so it is ready before any query runs without side effects at import time.
 - Add `if __name__ == "__main__": mcp.run()` at the bottom.
 - Confirm all four tools from TICKET-004 to TICKET-007 are registered.
 
