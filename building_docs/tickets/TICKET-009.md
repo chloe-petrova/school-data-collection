@@ -1,6 +1,6 @@
 # TICKET-009 — Register the MCP server with Claude Code
 
-**Status**: todo
+**Status**: done
 
 ---
 
