@@ -1,6 +1,6 @@
 # TICKET-006 — MCP tool: `save_result`
 
-**Status**: todo
+**Status**: done
 
 ---
 

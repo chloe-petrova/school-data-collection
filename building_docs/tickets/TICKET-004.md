@@ -1,6 +1,6 @@
 # TICKET-004 — MCP tool: `get_next_school`
 
-**Status**: todo
+**Status**: done
 
 ---
 

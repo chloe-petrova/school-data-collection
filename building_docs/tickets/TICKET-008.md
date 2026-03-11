@@ -1,6 +1,6 @@
 # TICKET-008 — Wire up the MCP server entry point
 
-**Status**: todo
+**Status**: done
 
 ---
 

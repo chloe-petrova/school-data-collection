@@ -1,6 +1,6 @@
 # TICKET-007 — MCP tool: `mark_failed`
 
-**Status**: todo
+**Status**: done
 
 ---
 
