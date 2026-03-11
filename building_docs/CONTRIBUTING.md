@@ -23,6 +23,10 @@ When implementing logic that can be tested (database queries, data parsing, tool
 
 Apply TDD where it adds value. Don't write tests for boilerplate or configuration that cannot meaningfully fail.
 
+## Branching
+
+Before starting work on a ticket, check out a new branch from `main`. Name it after the ticket, e.g. `ticket-005-fetch-page`. All commits for the ticket go on this branch. Do not commit directly to `main`.
+
 ## Completing a ticket
 
 When a ticket's acceptance criteria are met:
