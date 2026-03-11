@@ -1,7 +1,7 @@
 import sqlite3
 import pytest
 import db
-from server import _get_next_school, _save_result, _mark_failed
+from server import _get_next_school, _save_result, _mark_failed, _fetch_page
 
 
 def _make_db():
@@ -172,3 +172,22 @@ def test_mark_failed_returns_marked_failed():
     result = _mark_failed(conn, queue_id=school["id"], reason="Timeout")
 
     assert result == "marked_failed"
+
+
+# ---------------------------------------------------------------------------
+# fetch_page
+# ---------------------------------------------------------------------------
+
+@pytest.mark.asyncio
+async def test_fetch_page_returns_readable_text():
+    result = await _fetch_page("https://example.com")
+
+    assert "Example Domain" in result
+    assert "<" not in result  # no HTML tags
+
+
+@pytest.mark.asyncio
+async def test_fetch_page_returns_error_for_bad_url():
+    result = await _fetch_page("https://nonexistent.invalid")
+
+    assert result.startswith("ERROR:")

@@ -1,5 +1,8 @@
+import re
+
 import db
 from fastmcp import FastMCP
+from playwright.async_api import async_playwright
 
 mcp = FastMCP("school-scraper")
 
@@ -58,6 +61,24 @@ def _save_result(
         return f"ERROR: {type(e).__name__}: {e}"
 
 
+async def _fetch_page(url):
+    try:
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            page = await browser.new_page(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+            )
+            await page.goto(url, timeout=30000, wait_until="domcontentloaded")
+            text = await page.inner_text("body")
+            await browser.close()
+        text = re.sub(r"\n{3,}", "\n\n", text)
+        if len(text) > 15000:
+            text = text[:15000] + "\n[TRUNCATED — page was longer]"
+        return text
+    except Exception as e:
+        return f"ERROR: {type(e).__name__}: {e}"
+
+
 def _mark_failed(conn, queue_id, reason):
     conn.execute(
         "UPDATE schools_queue SET status = 'failed', fail_reason = ? WHERE id = ?",
@@ -103,7 +124,9 @@ def mark_failed(queue_id: int, reason: str) -> str:
     return _mark_failed(db.get_conn(), queue_id, reason)
 
 
-# fetch_page (TICKET-005) will be added in the next session — requires Playwright + Chromium
+@mcp.tool()
+async def fetch_page(url: str) -> str:
+    return await _fetch_page(url)
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ Individual ticket files are in `building_docs/tickets/`.
 | [TICKET-002](tickets/TICKET-002.md) | Database initialisation module (`db.py`) | done |
 | [TICKET-003](tickets/TICKET-003.md) | CSV loader script (`load_schools.py`) | done |
 | [TICKET-004](tickets/TICKET-004.md) | MCP tool: `get_next_school` | done |
-| [TICKET-005](tickets/TICKET-005.md) | MCP tool: `fetch_page` | todo |
+| [TICKET-005](tickets/TICKET-005.md) | MCP tool: `fetch_page` | done |
 | [TICKET-006](tickets/TICKET-006.md) | MCP tool: `save_result` | done |
 | [TICKET-007](tickets/TICKET-007.md) | MCP tool: `mark_failed` | done |
 | [TICKET-008](tickets/TICKET-008.md) | Wire up the MCP server entry point | todo |

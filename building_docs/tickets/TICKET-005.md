@@ -1,6 +1,6 @@
 # TICKET-005 — MCP tool: `fetch_page`
 
-**Status**: todo
+**Status**: done
 
 ---
 
