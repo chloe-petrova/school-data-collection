@@ -18,7 +18,7 @@ Individual ticket files are in `building_docs/tickets/`.
 | [TICKET-005](tickets/TICKET-005.md) | MCP tool: `fetch_page` | done |
 | [TICKET-006](tickets/TICKET-006.md) | MCP tool: `save_result` | done |
 | [TICKET-007](tickets/TICKET-007.md) | MCP tool: `mark_failed` | done |
-| [TICKET-008](tickets/TICKET-008.md) | Wire up the MCP server entry point | todo |
+| [TICKET-008](tickets/TICKET-008.md) | Wire up the MCP server entry point | done |
 | [TICKET-009](tickets/TICKET-009.md) | Register the MCP server with Claude Code | todo |
 | [TICKET-010](tickets/TICKET-010.md) | Write and test the agent run prompt | todo |
 
