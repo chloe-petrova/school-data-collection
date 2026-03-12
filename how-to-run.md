@@ -1,6 +1,6 @@
 # How to run the school scraper
 
-This project scrapes UK school websites to collect staff contact details (headteacher, safeguarding lead), age ranges, addresses, and other metadata. It stores everything in a local database and can generate an HTML report you open in your browser.
+This project scrapes UK school websites to collect staff contact details (headteacher, safeguarding lead), age ranges, addresses, and other metadata. It stores everything in a local database. You can view results through a live web dashboard or a static HTML report.
 
 ---
 
@@ -42,8 +42,9 @@ Setup is done. You're ready to start scraping.
 
 | Command | What it does |
 |---|---|
+| `$UV run python dashboard.py` | Starts the live dashboard at [localhost:5000](http://localhost:5000). See results update in real time. |
+| `$UV run python build_html.py` | Generates a static `results.html` file — open it in your browser to see results. |
 | `$UV run python load_schools.py` | Loads schools from the CSV file into the database queue. Safe to re-run. |
-| `$UV run python build_html.py` | Generates `results.html` from the database — open it in your browser to see results. |
 | `$UV run pytest` | Runs the automated tests to check everything still works. |
 | `$UV run python server.py` | Starts the MCP server manually (you normally don't need to do this — Claude Code starts it automatically). |
 
@@ -57,15 +58,29 @@ Each run processes 10 schools. To keep going:
 2. Open the file `building_docs/agent_prompt.md` and copy its entire contents.
 3. Paste it into a new Claude Code chat.
 4. Wait for the agent to finish — it will work through 10 schools, visiting each website and collecting data.
-5. When it's done, regenerate the HTML report (see below) to see the new results.
+5. When it's done, check the dashboard or regenerate the HTML report to see the new results.
 
 Repeat steps 2–5 as many times as you like. The agent picks up where it left off — it always grabs the next unprocessed school from the queue.
 
 ---
 
-## How to regenerate the HTML report
+## How to view results
 
-After scraping, run this to update the report:
+### Option A: Live dashboard (recommended)
+
+Run this in your terminal:
+
+```bash
+$UV run python dashboard.py
+```
+
+Then open [localhost:5000](http://localhost:5000) in your browser. You'll see a summary bar (how many schools are pending, done, and failed) and a card for each processed school. Click **Refresh** to update the data without reloading the page.
+
+You can leave the dashboard running while the agent scrapes — just hit Refresh to see new results as they come in.
+
+### Option B: Static HTML report
+
+If you prefer a single file you can share or open offline:
 
 ```bash
 $UV run python build_html.py
@@ -77,13 +92,13 @@ Then open `results.html` in your browser. On Windows you can double-click the fi
 start results.html
 ```
 
-The report shows a card for every school that has been processed. Failed schools (ones where the website was unreachable or had no useful data) are highlighted in red with a reason.
+Both options show the same data. Failed schools (ones where the website was unreachable or had no useful data) are highlighted in red with a reason.
 
 ---
 
 ## How to check progress
 
-To see how many schools are pending, done, or failed without opening the HTML report, run:
+The dashboard shows pending/done/failed counts at the top of the page. If you want a quick check from the terminal without opening a browser, run:
 
 ```bash
 $UV run python -c "
