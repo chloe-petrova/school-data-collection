@@ -1,6 +1,6 @@
 # TICKET-011 — HTML results viewer
 
-**Status**: todo
+**Status**: done
 
 ---
 
