@@ -9,6 +9,9 @@ __pycache__/
 # Virtual environment
 .venv/
 
+# Generated HTML report
+results.html
+
 # Claude Code local settings
 .claude/settings.local.json
 .mcp.json
