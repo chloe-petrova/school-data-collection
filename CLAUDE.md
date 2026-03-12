@@ -4,35 +4,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @building_docs/CONTRIBUTING.md
 
-## Project intent and architecture
+## What this is
 
-See @building_docs/intent.md and @building_docs/technical_implementation.md.
+A local Python MCP server that lets Claude Code scrape UK school websites for staff contacts and metadata. SQLite for storage, Playwright for headless browsing.
 
-## Implementation tickets
+## Commands
 
-See @building_docs/tickets_index.md for status and build order. Individual tickets are in `building_docs/tickets/`.
-
-`schools.csv` already exists — Step 6 of the technical plan is complete. All other tickets are `todo`.
-
-## Package manager
-
-This project uses `uv`. All Python commands go through `uv run`.
+`uv` is not on the bash PATH. Always use the full path:
 
 ```bash
-uv add fastmcp playwright          # install deps
-uv run playwright install chromium # download browser binaries
-uv run python server.py            # run the MCP server
-uv run python load_schools.py      # one-off: load CSV into SQLite queue
+UV=/c/Users/cstow/AppData/Local/Microsoft/WinGet/Links/uv.exe
+
+$UV run pytest                    # all 14 tests
+$UV run pytest -k <name>          # single test
+$UV run python server.py          # start MCP server
+$UV run python load_schools.py    # load CSV into queue (idempotent)
+$UV add <package>                 # add dependency
+$UV run playwright install chromium  # reinstall browser binaries
 ```
 
-## MCP server registration
+## Architecture
 
-```bash
-claude mcp add school-scraper uv --args "run,python,server.py" --cwd "c:/Users/cstow/cm_code/chlobo_is_a_spammer"
-```
+- **`server.py`** — MCP server (`FastMCP("school-scraper")`). Four tools: `get_next_school`, `fetch_page`, `save_result`, `mark_failed`. Internal helpers prefixed `_` accept a `conn` arg for testability.
+- **`db.py`** — SQLite schema + singleton connection (`get_conn()`). Two tables: `schools_queue` (work queue with status pending/in_progress/done/failed) and `results` (scraped data: 10 fields + timestamp). Auto-creates `schools.db` on first call.
+- **`load_schools.py`** — One-off CSV loader. Reads `data_collection/schools.csv` (1155 schools) into `schools_queue`. Uses `INSERT OR IGNORE` so re-runs are safe.
+- **`test_server.py`** / **`test_load_schools.py`** — pytest suite. Server tests use in-memory SQLite. `fetch_page` tests are async (`pytest-asyncio`).
 
-Verify: `claude mcp list` — should show `school-scraper` with tools `get_next_school`, `fetch_page`, `save_result`, `mark_failed`.
+## MCP registration
+
+Already configured in `.mcp.json`. Verify: `claude mcp list` should show `school-scraper`.
 
 ## Running the agent
 
-Paste the prompt from @building_docs/agent_prompt.md into a Claude Code session (created in TICKET-010).
+Paste the prompt from @building_docs/agent_prompt.md into a Claude Code session.

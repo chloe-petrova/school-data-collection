@@ -21,6 +21,7 @@ Individual ticket files are in `building_docs/tickets/`.
 | [TICKET-008](tickets/TICKET-008.md) | Wire up the MCP server entry point | done |
 | [TICKET-009](tickets/TICKET-009.md) | Register the MCP server with Claude Code | done |
 | [TICKET-010](tickets/TICKET-010.md) | Write and test the agent run prompt | done |
+| [TICKET-011](tickets/TICKET-011.md) | HTML results viewer | todo |
 
 ---
 
